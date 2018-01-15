@@ -58,6 +58,7 @@ export default {
   mixins: [ idMixin, listenOnRootMixin ],
   render (h) {
     const t = this
+    const $attrs = t.$attrs || []
     const $slots = t.$slots
     const $scoped = t.$scopedSlots
     const fields = t.computedFields
@@ -310,7 +311,7 @@ export default {
           role: t.isStacked ? 'table' : null,
           'aria-busy': t.computedBusy ? 'true' : 'false',
           'aria-colcount': String(fields.length),
-          'aria-rowcount': t.$attrs['aria-rowcount'] || (t.perPage && t.perPage > 0) ? '-1' : null
+          'aria-rowcount': $attrs['aria-rowcount'] || (t.perPage && t.perPage > 0) ? '-1' : null
         }
       },
       [ caption, colgroup, thead, tfoot, tbody ]
